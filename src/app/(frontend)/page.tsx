@@ -421,13 +421,13 @@ export default function WeddingPage() {
   const [galleryImages, setGalleryImages] = useState<{ url: string; caption?: string; alt?: string }[]>([])
 
   useEffect(() => {
-    fetch('/api/gallery-images?limit=20&sort=order&depth=1')
+    fetch('/api/gallery-images?limit=20&sort=order')
       .then((res) => res.json())
       .then((data) => {
         if (data?.docs?.length) {
           setGalleryImages(
-            data.docs.map((d: { image: { url: string }; caption?: string; alt?: string }) => ({
-              url: d.image?.url || '',
+            data.docs.map((d: { imageUrl: string; caption?: string; alt?: string }) => ({
+              url: d.imageUrl,
               caption: d.caption,
               alt: d.alt,
             })),

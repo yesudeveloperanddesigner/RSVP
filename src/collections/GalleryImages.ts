@@ -4,7 +4,7 @@ export const GalleryImages: CollectionConfig = {
   slug: 'gallery-images',
   admin: {
     useAsTitle: 'caption',
-    defaultColumns: ['caption', 'image', 'order', 'createdAt'],
+    defaultColumns: ['caption', 'imageUrl', 'order', 'createdAt'],
     group: 'Wedding',
   },
   access: {
@@ -15,11 +15,13 @@ export const GalleryImages: CollectionConfig = {
   },
   fields: [
     {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
+      name: 'imageUrl',
+      type: 'text',
       required: true,
-      label: 'Image',
+      label: 'Image URL',
+      admin: {
+        placeholder: 'Paste UploadThing URL or any image URL',
+      },
     },
     {
       name: 'caption',
