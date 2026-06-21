@@ -26,9 +26,15 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
-  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
-  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+  cors: [
+    process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+  ].filter(Boolean),
+  csrf: [
+    process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+  ].filter(Boolean),
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
