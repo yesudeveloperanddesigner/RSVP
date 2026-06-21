@@ -472,10 +472,34 @@ export default function WeddingPage() {
   })
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [formError, setFormError] = useState('')
+  const [phoneError, setPhoneError] = useState('')
+  const [plusOneError, setPlusOneError] = useState('')
   const successRef = useRef<HTMLDivElement>(null)
 
-  const handleChange = (field: string, value: string | number) =>
+  const PH_PHONE_REGEX = /^(?:\+63|0)9\d{9}$/
+
+  const validatePhone = (val: string) => {
+    if (!val) return 'Phone number is required.'
+    if (!PH_PHONE_REGEX.test(val.replace(/[\s-]/g, '')))
+      return 'Please enter a valid Philippines mobile number (e.g. +639171234567 or 09171234567).'
+    return ''
+  }
+
+  const validatePlusOne = (val: number) => {
+    if (val > 5)
+      return 'We\'re so sorry, but due to the intimate nature of our celebration, we are strictly unable to accommodate more than five additional guests. We truly appreciate your understanding.'
+    return ''
+  }
+
+  const handleChange = (field: string, value: string | number) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
+    if (field === 'phone') {
+      setPhoneError(validatePhone(value as string))
+    }
+    if (field === 'plusOne') {
+      setPlusOneError(validatePlusOne(value as number))
+    }
+  }
 
   const toggleMusic = () => {
     if (audioRef.current) {
@@ -509,6 +533,19 @@ export default function WeddingPage() {
     e.preventDefault()
     if (!formData.name || !formData.phone || !formData.attending) {
       setFormError('Please fill in all required fields.')
+      setFormStatus('error')
+      return
+    }
+    const phoneErr = validatePhone(formData.phone)
+    if (phoneErr) {
+      setPhoneError(phoneErr)
+      setFormError('Please fix the highlighted errors.')
+      setFormStatus('error')
+      return
+    }
+    if (formData.plusOne > 5) {
+      setPlusOneError(validatePlusOne(formData.plusOne))
+      setFormError('Please fix the highlighted errors.')
       setFormStatus('error')
       return
     }
@@ -1469,9 +1506,11 @@ export default function WeddingPage() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => handleChange('phone', e.target.value)}
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="+639171234567 or 09171234567"
+                      className={phoneError ? 'input-error' : ''}
                       required
                     />
+                    {phoneError && <p className="field-error">{phoneError}</p>}
                   </div>
                 </div>
                 <div className="form-row">
@@ -1500,7 +1539,9 @@ export default function WeddingPage() {
                       max={5}
                       value={formData.plusOne}
                       onChange={(e) => handleChange('plusOne', parseInt(e.target.value) || 0)}
+                      className={plusOneError ? 'input-error' : ''}
                     />
+                    {plusOneError && <p className="field-error">{plusOneError}</p>}
                   </div>
                 </div>
                 <div className="form-field form-field-full">

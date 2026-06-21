@@ -1169,6 +1169,16 @@ a {
   font-style: italic;
   font-family: var(--font-cormorant);
 }
+.field-error {
+  color: var(--color-error);
+  font-size: 14px;
+  font-style: italic;
+  font-family: var(--font-cormorant);
+  margin: 4px 0 0;
+}
+.input-error {
+  border-color: var(--color-error) !important;
+}
 
 .form-submit {
   font-family: var(--font-cormorant);
