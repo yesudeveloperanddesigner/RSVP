@@ -18,9 +18,11 @@ export const GalleryImages: CollectionConfig = {
       name: 'imageUrl',
       type: 'text',
       required: true,
-      label: 'Image URL',
+      label: 'Image',
       admin: {
-        placeholder: 'Paste UploadThing URL or any image URL',
+        components: {
+          Field: '/components/GalleryImageUpload',
+        },
       },
     },
     {

@@ -185,7 +185,7 @@ export interface Invitee {
  */
 export interface GalleryImage {
   id: string;
-  image: string | Media;
+  imageUrl: string;
   caption?: string | null;
   alt?: string | null;
   order?: number | null;
@@ -332,7 +332,7 @@ export interface InviteesSelect<T extends boolean = true> {
  * via the `definition` "gallery-images_select".
  */
 export interface GalleryImagesSelect<T extends boolean = true> {
-  image?: T;
+  imageUrl?: T;
   caption?: T;
   alt?: T;
   order?: T;
