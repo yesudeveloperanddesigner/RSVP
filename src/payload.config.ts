@@ -27,6 +27,8 @@ export default buildConfig({
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  cors: [process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
+  csrf: [process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000'].filter(Boolean),
   db: mongooseAdapter({
     url: process.env.DATABASE_URL || '',
   }),
