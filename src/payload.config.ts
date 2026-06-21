@@ -26,7 +26,7 @@ export default buildConfig({
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
+  serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : ''),
   cors: [
     process.env.PAYLOAD_PUBLIC_SERVER_URL || '',
     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
