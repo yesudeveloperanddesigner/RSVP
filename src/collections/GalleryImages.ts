@@ -22,6 +22,7 @@ export const GalleryImages: CollectionConfig = {
       admin: {
         components: {
           Field: '/components/GalleryImageUpload',
+          Cell: '/components/GalleryImageCell',
         },
       },
     },
