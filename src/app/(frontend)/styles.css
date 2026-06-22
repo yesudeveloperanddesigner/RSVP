@@ -1,3 +1,12 @@
+/* ===================== CUSTOM FONTS ===================== */
+@font-face {
+  font-family: 'Aestera';
+  src: url('/fonts/aestera-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===================== DESIGN TOKENS ===================== */
 :root {
   /* Core palette */
@@ -23,6 +32,7 @@
   --font-playfair: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --font-cormorant: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-script: var(--font-script), 'Great Vibes', cursive;
+  --font-danila: 'Aestera', serif;
 
   /* Spacing */
   --section-padding: 120px 40px;
@@ -346,24 +356,25 @@ a {
 
 /* Script couple names */
 .hero-names-script {
-  font-family: var(--font-script);
-  font-size: clamp(80px, 16vw, 180px);
+  font-family: var(--font-danila);
+  font-weight: 400;
+  font-size: clamp(60px, 12vw, 140px);
   color: var(--color-gold-light);
   line-height: 1.05;
   display: block;
   opacity: 0;
   letter-spacing: 2px;
   text-shadow:
-    0 0 80px rgba(201, 169, 110, 0.2),
-    0 2px 6px rgba(0, 0, 0, 0.35);
+    0 0 80px rgba(201, 169, 110, 0.35),
+    0 4px 8px rgba(0, 0, 0, 0.5);
 }
 .hero-names-second {
   /* second name (Denz) slightly smaller to vary scale */
-  font-size: clamp(72px, 14vw, 160px);
+  font-size: clamp(52px, 10vw, 120px);
   color: var(--color-champagne);
   text-shadow:
-    0 0 60px rgba(245, 236, 215, 0.12),
-    0 2px 4px rgba(0, 0, 0, 0.3);
+    0 0 60px rgba(245, 236, 215, 0.25),
+    0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 /* & connector row */
@@ -1430,9 +1441,9 @@ a {
 }
 
 .splash-heading {
-  font-family: var(--font-script), 'Great Vibes', cursive;
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-family: var(--font-danila);
   font-weight: 400;
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
   line-height: 1.2;
   margin-bottom: 12px;
   color: var(--color-ivory);

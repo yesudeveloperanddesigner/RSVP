@@ -418,7 +418,9 @@ export default function WeddingPage() {
   const splashRef = useRef<HTMLDivElement>(null)
   const [showSplash, setShowSplash] = useState(true)
 
-  const [galleryImages, setGalleryImages] = useState<{ url: string; caption?: string; alt?: string }[]>([])
+  const [galleryImages, setGalleryImages] = useState<
+    { url: string; caption?: string; alt?: string }[]
+  >([])
 
   useEffect(() => {
     fetch('/api/gallery-images?limit=20&sort=order')
@@ -487,7 +489,7 @@ export default function WeddingPage() {
 
   const validatePlusOne = (val: number) => {
     if (val > 5)
-      return 'We\'re so sorry, but due to the intimate nature of our celebration, we are strictly unable to accommodate more than five additional guests. We truly appreciate your understanding.'
+      return "We're so sorry, but due to the intimate nature of our celebration, we are strictly unable to accommodate more than five additional guests. We truly appreciate your understanding."
     return ''
   }
 
@@ -514,7 +516,10 @@ export default function WeddingPage() {
 
   const enterSite = () => {
     if (audioRef.current) {
-      audioRef.current.play().then(() => setPlaying(true)).catch(() => {})
+      audioRef.current
+        .play()
+        .then(() => setPlaying(true))
+        .catch(() => {})
     }
     document.body.style.overflow = ''
     if (splashRef.current) {
@@ -596,13 +601,17 @@ export default function WeddingPage() {
     history.scrollRestoration = 'manual'
     window.scrollTo(0, 0)
     document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [])
 
   useEffect(() => {
     const el = audioRef.current
     if (!el) return
-    el.play().then(() => setPlaying(true)).catch(() => {})
+    el.play()
+      .then(() => setPlaying(true))
+      .catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -754,20 +763,6 @@ export default function WeddingPage() {
         }
 
         /* ────── HERO PARALLAX ────── */
-        if (ringsWrapRef.current) {
-          gsap.to(ringsWrapRef.current, {
-            y: 160,
-            scale: 0.35,
-            opacity: 0.05,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: heroRef.current,
-              start: 'top top',
-              end: 'bottom top',
-              scrub: 1.5,
-            },
-          })
-        }
         if (heroContentRef.current) {
           gsap.to(heroContentRef.current, {
             y: -80,
@@ -962,7 +957,9 @@ export default function WeddingPage() {
         animateSplitWords('.gallery-section-heading', gallerySectionRef.current, '80%', '50%')
 
         if (galleryGridRef.current) {
-          const items = galleryGridRef.current.querySelectorAll('.gallery-art-wrap, .gallery-upload-wrap')
+          const items = galleryGridRef.current.querySelectorAll(
+            '.gallery-art-wrap, .gallery-upload-wrap',
+          )
           gsap.to(items, {
             y: 0,
             opacity: 1,
@@ -1071,7 +1068,9 @@ export default function WeddingPage() {
               <RingsSVG />
             </div>
             <p className="splash-overline">Together with their families</p>
-            <h1 className="splash-heading">Cheley <span className="splash-amp">&amp;</span> Denz</h1>
+            <h1 className="splash-heading">
+              Cheley <span className="splash-amp">&amp;</span> Denz
+            </h1>
             <p className="splash-sub">We&apos;re Getting Married!</p>
             <p className="splash-date">June 21, 2026 · Coral Sands Beach Resort</p>
             <button className="splash-enter" onClick={enterSite}>
@@ -1459,9 +1458,7 @@ export default function WeddingPage() {
                     {img.caption && <p className="gallery-upload-caption">{img.caption}</p>}
                   </div>
                 ))
-              : Array.from({ length: 6 }).map((_, i) => (
-                  <GalleryArt key={i} index={i} />
-                ))}
+              : Array.from({ length: 6 }).map((_, i) => <GalleryArt key={i} index={i} />)}
           </div>
         </div>
       </section>
